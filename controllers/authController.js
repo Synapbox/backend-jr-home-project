@@ -5,7 +5,7 @@ const jwtUtils = require("../utils/jwtUtils");
 const authService = require("../services/authService");
 
 // Login endpoint
-async function login(req, res, next) {
+async function login(req, res) {
   const { username, password } = req.body;
 
   try {

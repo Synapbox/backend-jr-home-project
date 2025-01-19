@@ -5,6 +5,7 @@ const errorHandler = require("./middlewares/errorHandler");
 const logger = require("./middlewares/logger");
 const authController = require("./controllers/authController");
 const demoRoute = require("./routes/demo");
+const metricRoutes = require("./routes/metric");
 require("dotenv").config();
 
 const app = express();
@@ -26,6 +27,11 @@ app.use(logger); // Logging middleware
 app.get("/", (req, res) => {
   res.json({ info: "Backend JR project API" });
 });
+
+// Metrics
+app.use("/calculation/metric", metricRoutes);
+
+app.use("/demo", demoRoute);
 
 // Error handling middleware
 app.use(errorHandler);
