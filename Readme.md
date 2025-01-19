@@ -8,18 +8,18 @@ This endpoint receives an array of survey data, processes it, and calculates the
 
 Request Body (JSON):
 
-'''
+```json
 [
   { "optionId": 1, "label": "Option A" },
   { "optionId": 2, "label": "Option B" },
   { "optionId": 1, "label": "Option A" },
   { "optionId": 3, "label": "Option C" }
 ]
-'''
+```
 
-Response (JSON):
+Response:
 
-'''
+```json
 {
   "calculation": "top2boxes",
   "sampleSize": 4,
@@ -44,35 +44,39 @@ Response (JSON):
     }
   ]
 }
-''' 
+```
 
 ## 2. Business Logic and Statistical Calculation Explanation
+
 ### Key Concepts:
+
 Histogram Calculation: The calculateHistogram function calculates the frequency of each unique combination of optionId and label in the dataset. It generates a frequency map, sorts the options based on their frequency count, and then calculates the percentage of each option's frequency relative to the total sample size.
 
-### Top 2 Boxes Calculation: The calculateTop2Boxes function calculates the "Top 2 Boxes" score, which represents the total frequency percentage of the top two most frequent options.
+### Top 2 Boxes Calculation: 
+
+The calculateTop2Boxes function calculates the "Top 2 Boxes" score, which represents the total frequency percentage of the top two most frequent options.
 
 ### Detailed Explanation of Functions:
-calculateHistogram(data):
 
+## calculateHistogram(data):
 - Purpose: To count the occurrences of each option (combination of optionId and label).
 - Input: An array of survey data objects, where each object has optionId and label.
 - Output: A sorted list of the top two options with their respective counts and percentages.
 
-## Steps:
+#### Steps:
 
-### Frequency Map:
+#### Frequency Map:
 - The function iterates over each entry in the data array and creates a unique key for each optionId and label combination.
 - It uses this key to store the frequency count (frequencyCount) of each combination in a frequencyMap object.
-### Sorting:
+#### Sorting:
 - After counting, the frequency map is sorted by frequencyCount in descending order.
-### Top 2 Boxes:
+#### Top 2 Boxes:
 - The function then selects the top two most frequent options and calculates their percentage relative to the total sample size.
 - The output includes the optionId, label, order (ranking), frequencyCount, frequencyPercentage, and the sampleSize.
 
 ## Example output for a data sample:
 
-'''
+```json
 [
   {
     "optionId": 1,
@@ -91,16 +95,15 @@ calculateHistogram(data):
     "sampleSize": 4
   }
 ]
+```
 
-'''
-
-### calculateTop2Boxes(data):
+## calculateTop2Boxes(data):
 
 - Purpose: To calculate the "Top 2 Boxes" score based on the histogram data.
 - Input: An array of survey data, where each entry has optionId and label.
 - Output: A JSON object containing the score and histogram of the top two boxes.
 
-## Steps:
+#### Steps:
 
 - The function first calculates the histogram using calculateHistogram(data).
 - It then sums the frequencyPercentage values of the top two options (from the histogram).
@@ -114,7 +117,7 @@ calculateHistogram(data):
 
 ## Example output:
 
-'''
+```json
 {
   "calculation": "top2boxes",
   "sampleSize": 4,
@@ -139,7 +142,7 @@ calculateHistogram(data):
     }
   ]
 }
-'''
+```
 
 ## 3. Conclusion
 
@@ -150,12 +153,6 @@ The project is built with the following key components:
 - calculateHistogram: Computes the frequency and percentages of responses.
 - calculateTop2Boxes: Calculates the overall "Top 2 Boxes" score and provides detailed statistics.
 - This project provides insights into the responses from surveys, offering businesses a way to evaluate the most popular options in their forms or questionnaires.
-
-
-
-
-
-
 
 # Node Express.js Boilerplate
 
