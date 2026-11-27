@@ -208,13 +208,67 @@ What we ask:
 
 ---
 
-## Timebox and submission
+## Timebox
 
 * We expect **about 4–6 hours of focused work** in total for Level 1 plus one Level 2 option. Please don't spend your whole week on it. If you run out of time, write what's missing and how you'd do it in `NOTES.md`.
 * You have **5 calendar days** from when you receive this.
-* **Create your own repository** from this one: either GitHub's **"Use this template"** button, or clone this repository and push it to a new one. Please don't open pull requests against this repository.
-* The repository can be public or private. If it's private, invite the reviewers named in the email you received.
-* Reply to that email with the link when you're done.
+
+## How to submit
+
+You'll work in **your own private copy** of this repository and send us a **pull request inside that copy**.
+
+> ⚠️ **Please don't fork this repository, and don't open a pull request against it.** This repository is public, and GitHub doesn't let a fork of a public repository be private, so your solution would be visible to everyone, including other candidates.
+
+### 1. Create a private copy
+
+**Option A: use the template (easiest).** On this repository's GitHub page, click **Use this template → Create a new repository**, choose **Private**, and create it.
+
+**Option B: clone and push.** On GitHub, create a new **private**, **empty** repository: no README, no `.gitignore`, no license. Then run:
+
+```bash
+git clone https://github.com/Synapbox/backend-jr-home-project.git survey-metrics-api
+cd survey-metrics-api
+git remote set-url origin https://github.com/<your-username>/<your-repo>.git
+git push -u origin main
+```
+
+Either way, your `main` branch now holds the starter code. **Leave `main` as it is.**
+
+### 2. Work on a `solution` branch
+
+```bash
+git checkout -b solution
+# ...work, committing as you go...
+git push -u origin solution
+```
+
+Keep committing in small steps, as described in [Using AI tools](#using-ai-tools).
+
+### 3. Open a pull request in your repository
+
+On **your** repository, open a pull request from `solution` into `main`.
+
+* **Title:** `Survey Metrics API: <your name>`
+* **Description:** a few lines on what you built and which Level 2 option you chose. Link to your `NOTES.md` instead of repeating it.
+* **Don't merge it.** We review the pull request diff and may leave comments on it to talk about in the call.
+
+### 4. Invite us
+
+In your repository, go to **Settings → Collaborators → Add people** and invite the GitHub usernames listed in the email you received. Read access is enough.
+
+### 5. Tell us
+
+Reply to the email with the **link to the pull request**.
+
+Please **stop pushing** once you've sent the link, because we review what's there at that moment. If you need to push a fix after that, tell us in the email thread.
+
+**Before you send it, check that:**
+
+- [ ] The repository is **private**, and the reviewers are invited.
+- [ ] The pull request goes from `solution` into `main`, and it isn't merged.
+- [ ] `npm install && npm test` passes on a fresh clone.
+- [ ] `npm start` starts the API on `PORT` (default `5050`), or `NOTES.md` explains how to run it.
+- [ ] `NOTES.md` is filled in.
 
 ---
 
@@ -247,6 +301,9 @@ Only if your Level 2 option needs it. We'd rather see a focused, clean project t
 
 **Something in the spec is unclear or seems wrong.**
 That happens in real work too. Make a reasonable decision, write it down in `NOTES.md` with your reasoning, and keep going. You can also email us. We'll answer within one business day, but don't block on it.
+
+**I don't have a GitHub account, or I can't create a private repository.**
+Private repositories are free on every GitHub account. If GitHub isn't an option for you, reply to the email and we'll agree on another way to send your work, for example a zip file that includes the `.git` folder so we can see your commits.
 
 **Do you check the exact wording of error messages?**
 No. We check the status code and `error.code`. The message is for humans.
